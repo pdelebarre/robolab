@@ -1,7 +1,19 @@
-# Webots MVP model notes
+# RoboAlien Webots simulation
 
-This directory is the home for the Webots world and robot assets. The initial PR intentionally keeps the model minimal and generated from primitives so the behavior stack can evolve without coupling to a specific CAD mesh.
+The current MVP world is `worlds/alien_mvp.wbt` and uses the `RoboAlienMVP` primitive robot in `protos/`.
 
-The target visual design is a small cute alien: oversized rounded head, two large forward-facing optical cameras, compact torso, short arms, broad feet, and a low center of mass.
+## Demo controls
 
-Next simulation slice should add the actual Webots `.wbt` and `.proto` assets plus ROS 2 bridge. The core behavior tests in `ros2/alien_robot/alien_robot/core.py` are simulator-independent and form the contract for that integration.
+Run the world with Webots and use the keyboard:
+
+- `G` — walk to the toy, grasp it, and return home
+- `W` — walk home
+- `F` — simulate a fall and recover
+- `R` — continue recovery
+- `H` — reset to standing/home
+
+The controller also enables both camera eyes, IMU, gyro, accelerometer, range sensor, microphone and speaker devices. Voice recognition is intentionally represented by the ROS 2 `voice/command` interface in this slice; an STT adapter will be added next.
+
+## Important MVP boundary
+
+The current walking and recovery motion is a deterministic Supervisor demonstration. It is **not** yet a physically validated biped gait or whole-body controller. The next slice replaces scripted body motion with joint-level motors, balance feedback and contact-aware recovery.
