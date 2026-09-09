@@ -1,10 +1,33 @@
 # RoboAlien Webots simulation
 
-The current MVP world is `worlds/alien_mvp.wbt` and uses the `RoboAlienMVP` primitive robot in `protos/`.
+The Webots launcher is designed to work on macOS and Linux without relying on the operating system's `.wbt` file association.
+
+## Start the simulation
+
+From the repository root:
+
+```bash
+npm run simulation
+```
+
+Or directly:
+
+```bash
+bash simulation/webots/run.sh
+```
+
+The launcher:
+
+1. Uses `webots` from `PATH` when available.
+2. Falls back to the standard macOS installation at `/Applications/Webots.app/Contents/MacOS/webots`.
+3. Supports an explicit executable with `WEBOTS_BIN=/path/to/webots`.
+4. Opens `worlds/alien_biped.wbt` when present, otherwise falls back to `worlds/alien_mvp.wbt` for compatibility with the current MVP repository layout.
+
+This deliberately invokes the Webots executable directly. Do **not** use macOS `open` on a `.wbt` file; that produces `kLSApplicationNotFoundErr` when no file association is registered.
 
 ## Demo controls
 
-Run the world with Webots and use the keyboard:
+Use the keyboard in Webots:
 
 - `G` — walk to the toy, grasp it, and return home
 - `W` — walk home
