@@ -1,0 +1,8 @@
+{
+  "name": "robolab",
+  "private": true,
+  "scripts": {
+    "simulation": "bash simulation/webots/run.sh",
+    "simulation:webots": "bash simulation/webots/run.sh"
+  }
+}
